@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Àlex Martín Adelantado · Venture Capital & Finance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:    #1565C0;
+      --blue-mid:#1E88E5;
+      --blue-lt: #42A5F5;
+      --cyan:    #00BCD4;
+      --gold:    #FFB300;
+      --dark:    #0A1628;
+      --navy:    #0D3B6E;
+      --white:   #FFFFFF;
+      --gray:    #F4F7FB;
+      --text:    #1A1A2E;
+      --muted:   #6B7B8D;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(21,101,192,0.08);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.1rem;
+      color: var(--blue);
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 40%, #1565C0 100%);
+      display: flex; align-items: center;
+      padding: 0 5%;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,188,212,0.15) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: 10%;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,179,0,0.1) 0%, transparent 70%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      padding-top: 64px;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,179,0,0.15);
+      border: 1px solid rgba(255,179,0,0.3);
+      border-radius: 20px; padding: 0.35rem 0.9rem;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.05; letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--cyan); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      line-height: 1.7; margin-bottom: 2rem;
+      max-width: 460px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--dark);
+      padding: 0.8rem 1.8rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: #FFC107; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,179,0,0.3); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white); padding: 0.8rem 1.8rem;
+      border-radius: 8px; font-weight: 600;
+      font-size: 0.9rem; text-decoration: none;
+      transition: all 0.2s; background: transparent;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 2.5rem;
+    }
+    .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800; color: var(--white);
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .hero-right {
+      display: flex; flex-direction: column; gap: 1rem;
+      position: relative;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 1.25rem 1.5rem;
+      transition: transform 0.3s;
+    }
+    .hero-card:hover { transform: translateX(-4px); }
+    .hero-card-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--cyan); text-transform: uppercase; margin-bottom: 0.4rem;
+    }
+    .hero-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .hero-card-sub { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+    .card-accent { border-left: 3px solid var(--gold); }
+    .card-accent2 { border-left: 3px solid var(--cyan); }
+    .card-accent3 { border-left: 3px solid var(--blue-lt); }
+
+    /* SECTIONS */
+    section { padding: 6rem 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      color: var(--blue-mid); text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800; color: var(--dark);
+      letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .section-title span { color: var(--blue-mid); }
+    .section-lead {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.75; max-width: 600px;
+    }
+
+    /* SOBRE MI */
+    .sobre { background: var(--gray); }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-top: 3rem;
+    }
+    .gc-card {
+      background: white; border-radius: 14px;
+      padding: 1.5rem; margin-bottom: 1rem;
+      border-left: 4px solid var(--blue-mid);
+      box-shadow: 0 2px 16px rgba(21,101,192,0.06);
+    }
+    .gc-card.how { border-color: var(--cyan); }
+    .gc-card.what { border-color: var(--blue-lt); }
+    .gc-label {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em;
+      color: var(--blue-mid); text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .gc-card.how .gc-label { color: var(--cyan); }
+    .gc-card.what .gc-label { color: var(--blue-lt); }
+    .gc-text { font-size: 0.95rem; color: var(--text); line-height: 1.7; }
+
+    .sobre-highlights { display: flex; flex-direction: column; gap: 1rem; }
+    .highlight-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: white; border-radius: 12px; padding: 1.25rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .highlight-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .highlight-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+    .highlight-text strong { color: var(--dark); font-weight: 600; }
+
+    /* EXPERIÈNCIA */
+    .timeline { position: relative; margin-top: 3rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--blue), var(--cyan));
+    }
+    .timeline-item {
+      display: flex; gap: 2rem; margin-bottom: 2.5rem;
+      padding-left: 60px; position: relative;
+    }
+    .timeline-dot {
+      position: absolute; left: 11px; top: 6px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--blue); border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--blue-lt);
+    }
+    .timeline-date {
+      font-size: 0.8rem; font-weight: 600; color: var(--blue-mid);
+      white-space: nowrap; min-width: 140px;
+      padding-top: 0.2rem;
+    }
+    .timeline-content { flex: 1; }
+    .timeline-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--dark);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-role {
+      font-size: 0.85rem; color: var(--blue-mid);
+      font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .timeline-tag {
+      display: inline-block; margin-top: 0.5rem;
+      background: var(--gray); border-radius: 20px;
+      padding: 0.2rem 0.7rem; font-size: 0.75rem;
+      color: var(--blue); font-weight: 600;
+    }
+
+    /* PROJECTES */
+    .projectes { background: var(--gray); }
+    .projectes-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .projecte-card {
+      background: white; border-radius: 16px;
+      padding: 1.75rem; transition: all 0.3s;
+      border: 1px solid transparent;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+    .projecte-card:hover {
+      border-color: var(--blue-lt);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(21,101,192,0.12);
+    }
+    .projecte-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem; font-weight: 800;
+      color: var(--blue-lt); opacity: 0.4;
+      line-height: 1; margin-bottom: 0.75rem;
+    }
+    .projecte-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 0.5rem;
+    }
+    .projecte-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .projecte-result {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #E3F2FD; border-radius: 6px;
+      padding: 0.3rem 0.75rem; font-size: 0.8rem;
+      font-weight: 700; color: var(--blue);
+    }
+
+    /* CONTINGUT */
+    .contingut-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .canal-card {
+      border-radius: 14px; padding: 1.5rem;
+      border: 1px solid #E3F2FD;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .canal-header { display: flex; align-items: center; gap: 0.75rem; }
+    .canal-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; color: white;
+    }
+    .canal-name { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--dark); font-size: 1rem; }
+    .canal-freq { font-size: 0.75rem; color: var(--blue-mid); font-weight: 600; }
+    .canal-content { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    /* CONTACTE */
+    .contacte { background: linear-gradient(135deg, var(--dark), var(--navy)); }
+    .contacte .section-title { color: white; }
+    .contacte .section-lead { color: rgba(255,255,255,0.6); }
+    .contacte-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem; align-items: center;
+    }
+    .contacte-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contacte-link {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 1rem 1.25rem;
+      text-decoration: none; color: white;
+      transition: all 0.2s;
+    }
+    .contacte-link:hover { background: rgba(255,255,255,0.1); transform: translateX(4px); }
+    .contacte-link-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--blue); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 800; flex-shrink: 0;
+    }
+    .contacte-link-text { font-size: 0.9rem; font-weight: 500; }
+    .contacte-link-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+    .contacte-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); }
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; padding: 0.75rem 1rem;
+      color: white; font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus {
+      outline: none; border-color: var(--cyan);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-textarea { min-height: 100px; resize: vertical; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); padding: 2rem 5%;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1rem; color: rgba(255,255,255,0.5);
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * { animation: fadeUp 0.6s ease both; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+    .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-grid, .sobre-grid, .contacte-grid { grid-template-columns: 1fr; }
+      .projectes-grid { grid-template-columns: 1fr; }
+      .contingut-grid { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .timeline-item { padding-left: 40px; }
+      .timeline-date { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Àlex Martín</div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre mi</a></li>
+      <li><a href="#experiencia">Experiència</a></li>
+      <li><a href="#projectes">Projectes</a></li>
+      <li><a href="#contingut">Contingut</a></li>
+      <li><a href="#contacte">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">✦ Disponible a partir de setembre 2026</div>
+        <h1>Venture Capital<br><span>&amp; Finance</span></h1>
+        <p class="hero-sub">Analista financer amb experiència en VC i renda variable. Crec en el poder de les dades per prendre decisions que importen — i en el talent jove per canviar el sector.</p>
+        <div class="hero-btns">
+          <a href="#contacte" class="btn-primary">Contacta amb mi</a>
+          <a href="https://linkedin.com/in/a-martin-ad" target="_blank" class="btn-outline">LinkedIn →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Ops. growth-stage</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">+15%</span>
+            <span class="stat-label">Retorn Andbank</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">Top 10%</span>
+            <span class="stat-label">BBA UPF</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card card-accent">
+          <div class="hero-card-label">Actual</div>
+          <div class="hero-card-title">VC Analyst Intern</div>
+          <div class="hero-card-sub">4 Founders Capital · Barcelona</div>
+        </div>
+        <div class="hero-card card-accent2">
+          <div class="hero-card-label">Experiència anterior</div>
+          <div class="hero-card-title">Equity Analyst</div>
+          <div class="hero-card-sub">Andbank Private Bankers · Barcelona</div>
+        </div>
+        <div class="hero-card card-accent3">
+          <div class="hero-card-label">Formació</div>
+          <div class="hero-card-title">BBA · CBS Copenhagen</div>
+          <div class="hero-card-sub">Universitat Pompeu Fabra · Exchange 2025</div>
+        </div>
+        <div class="hero-card" style="border-left: 3px solid var(--gold);">
+          <div class="hero-card-label">Pròximament</div>
+          <div class="hero-card-title">EY-Parthenon</div>
+          <div class="hero-card-sub">Consultoria estratègica · Setembre 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MI -->
+  <section class="sobre" id="sobre">
+    <div class="section-inner">
+      <div class="section-label">Sobre mi</div>
+      <h2 class="section-title">Per qué faig el que<br><span>faig</span></h2>
+      <p class="section-lead">No em mou només analitzar empreses. Em mou entendre com es crea valor real i contribuir a decisions que impactin el futur.</p>
+      <div class="sobre-grid">
+        <div>
+          <div class="gc-card">
+            <div class="gc-label">WHY — Per qué</div>
+            <p class="gc-text">Crec que darrere de cada dada hi ha una decisió que pot canviar el rumb d'una empresa o d'una persona. Em mou la curiositat per entendre com es crea valor real i l'ambició de formar part de decisions que importin. Vull finançar empreses disruptives que apostin pel talent jove.</p>
+          </div>
+          <div class="gc-card how">
+            <div class="gc-label">HOW — Com</div>
+            <p class="gc-text">Amb rigor analític i mentalitat d'aprenentatge constant. Combino modelització financera, due diligence i visió estratègica. La resiliència forjada en anys de bàsquet federat d'alt nivell — i tres operacions d'espatlla — em permet mantenir la qualitat sota pressió.</p>
+          </div>
+          <div class="gc-card what">
+            <div class="gc-label">WHAT — Qué</div>
+            <p class="gc-text">Analitzo empreses, construeixo models financers i avaluo oportunitats d'inversió en venture capital i fintech. Actualment Analyst Intern a 4 Founders Capital. A partir de setembre, EY-Parthenon.</p>
+          </div>
+        </div>
+        <div class="sobre-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🏀</div>
+            <p class="highlight-text"><strong>Esportista d'alt rendiment</strong> — Des dels 5 anys jugant a bàsquet federat en clubs ACB i seleccions catalanes. 5è d'Espanya en 3x3. Tres operacions d'espatlla. L'esport m'ha ensenyat que la constància val més que el talent.</p>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🌍</div>
+            <p class="highlight-text"><strong>Experiència internacional</strong> — Erasmus a Copenhagen Business School (CBS). Cursos en Big Data & Analytics, AI for Sales Management i Brand Management.</p>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">📊</div>
+            <p class="highlight-text"><strong>Perfil analític dual</strong> — Experiència simultània en mercats privats (VC) i cotitzats (equity research). DCF, trading comps, unit economics, Bloomberg i Excel avançat.</p>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🚀</div>
+            <p class="highlight-text"><strong>Emprenedor</strong> — Co-fundador de DCA, una academia esportiva que va assolir 30 membres i €6.000+ de facturació en el primer mes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIÈNCIA -->
+  <section id="experiencia">
+    <div class="section-inner">
+      <div class="section-label">Trajectòria</div>
+      <h2 class="section-title">Experiència <span>professional</span></h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Set. 2026 →</div>
+          <div class="timeline-content">
+            <div class="timeline-company">EY-Parthenon</div>
+            <div class="timeline-role">Consultoria Estratègica</div>
+            <p class="timeline-desc">Incorporació a l'equip de Strategy & Transactions. Assessorament estratègic a clients corporatius en processos de creixement, transformació i M&A.</p>
+            <span class="timeline-tag">Pròximament</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Gen. – Jul. 2026</div>
+          <div class="timeline-content">
+            <div class="timeline-company">4 Founders Capital</div>
+            <div class="timeline-role">Off-cycle VC Analyst Intern</div>
+            <p class="timeline-desc">Screening d'oportunitats i due diligence en 3 operacions growth-stage (2 Series A, 1 Series B). Construcció de models d'unit economics, anàlisi de mercat i preparació d'investment memos per al comitè d'inversió.</p>
+            <span class="timeline-tag">Venture Capital</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Estiu 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-company">Andbank Private Bankers</div>
+            <div class="timeline-role">Equity Analyst Summer Intern</div>
+            <p class="timeline-desc">Construcció de models de valoració (DCF, trading comps) i notes d'inversió. Contribució a la tesi d'Oscar Health — la posició va generar un retorn superior al 15%. Ús diari de Bloomberg i Excel per a reportin setmanal.</p>
+            <span class="timeline-tag">Equity Research</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Set. 2024 →</div>
+          <div class="timeline-content">
+            <div class="timeline-company">DCA Academy</div>
+            <div class="timeline-role">Co-Fundador</div>
+            <p class="timeline-desc">Creació d'una academia esportiva. Desenvolupament del pla de negoci, model financer i estratègia go-to-market. 30 membres i €6.000+ de facturació en el primer mes.</p>
+            <span class="timeline-tag">Emprenedoria</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Abr. – Set. 2024</div>
+          <div class="timeline-content">
+            <div class="timeline-company">Aleaciones, Prealeaciones y Desoxidantes</div>
+            <div class="timeline-role">Accounting Assistant</div>
+            <p class="timeline-desc">Registre comptable i reconciliacions mensuals per a una empresa de metalls amb +$70M de facturació.</p>
+            <span class="timeline-tag">Comptabilitat</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTES -->
+  <section class="projectes" id="projectes">
+    <div class="section-inner">
+      <div class="section-label">Projectes destacats</div>
+      <h2 class="section-title">Resultats <span>mesurables</span></h2>
+      <div class="projectes-grid">
+        <div class="projecte-card">
+          <div class="projecte-num">01</div>
+          <div class="projecte-title">Oscar Health — Tesi d'inversió</div>
+          <p class="projecte-desc">Anàlisi completa de l'empresa de salut digital. Model DCF i trading comps. La posició va ser inclosa a la cartera i va generar un retorn superior al 15%.</p>
+          <span class="projecte-result">📈 +15% retorn</span>
+        </div>
+        <div class="projecte-card">
+          <div class="projecte-num">02</div>
+          <div class="projecte-title">Superblocks Barcelona</div>
+          <p class="projecte-desc">Estudi analític sobre l'impacte ambiental i econòmic de la transformació urbana de Barcelona. Metodologia de dades quantitatives i anàlisi d'impacte.</p>
+          <span class="projecte-result">🏆 9,5/10 UPF</span>
+        </div>
+        <div class="projecte-card">
+          <div class="projecte-num">03</div>
+          <div class="projecte-title">DCA Academy — Llançament</div>
+          <p class="projecte-desc">Co-fundació d'una academia esportiva. Business plan complet, model financer i estratègia de captació. Primer mes operatiu amb 30 membres.</p>
+          <span class="projecte-result">💰 €6k primer mes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTINGUT -->
+  <section id="contingut">
+    <div class="section-inner">
+      <div class="section-label">Contingut</div>
+      <h2 class="section-title">On puc <span>trobar-me</span></h2>
+      <p class="section-lead">Comparteixo reflexions sobre VC, fintech i finances a través de diversos canals. Segueix-me per estar al dia del sector.</p>
+      <div class="contingut-grid">
+        <div class="canal-card">
+          <div class="canal-header">
+            <div class="canal-icon" style="background:#0077B5;">in</div>
+            <div>
+              <div class="canal-name">LinkedIn</div>
+              <div class="canal-freq">1 post setmanal</div>
+            </div>
+          </div>
+          <p class="canal-content">Reflexions sobre el sector VC, anàlisi de deals, tendències fintech i actualitzacions professionals. Més de 500 connexions.</p>
+          <a href="https://linkedin.com/in/a-martin-ad" target="_blank" style="font-size:0.8rem;color:var(--blue-mid);font-weight:600;text-decoration:none;">Seguir →</a>
+        </div>
+        <div class="canal-card">
+          <div class="canal-header">
+            <div class="canal-icon" style="background:#010101;">♪</div>
+            <div>
+              <div class="canal-name">TikTok</div>
+              <div class="canal-freq">2 vídeos setmanals</div>
+            </div>
+          </div>
+          <p class="canal-content">Divulgació financera accessible. Com funciona el VC, eines d'analista, tendències del mercat i el dia a dia en un fons d'inversió.</p>
+          <a href="#" style="font-size:0.8rem;color:var(--blue-mid);font-weight:600;text-decoration:none;">Seguir →</a>
+        </div>
+        <div class="canal-card">
+          <div class="canal-header">
+            <div class="canal-icon" style="background:#000;">𝕏</div>
+            <div>
+              <div class="canal-name">Twitter / X</div>
+              <div class="canal-freq">Interaccions diàries</div>
+            </div>
+          </div>
+          <p class="canal-content">Seguiment en temps real dels debats del sector. Macro, VC europeu, fintech i comentaris a referents com Howard Marks i Harry Stebbings.</p>
+          <a href="#" style="font-size:0.8rem;color:var(--blue-mid);font-weight:600;text-decoration:none;">Seguir →</a>
+        </div>
+        <div class="canal-card">
+          <div class="canal-header">
+            <div class="canal-icon" style="background:#FF6719;">S</div>
+            <div>
+              <div class="canal-name">Substack</div>
+              <div class="canal-freq">1 newsletter cada 15 dies</div>
+            </div>
+          </div>
+          <p class="canal-content">Anàlisi en profunditat sobre deals VC, empreses fintech i tendències del mercat. Per a professionals que volen entendre el sector.</p>
+          <a href="#" style="font-size:0.8rem;color:var(--blue-mid);font-weight:600;text-decoration:none;">Subscriure's →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contacte" id="contacte">
+    <div class="section-inner">
+      <div class="section-label" style="color:var(--cyan);">Contacte</div>
+      <h2 class="section-title">Parlem</h2>
+      <p class="section-lead">Obert a converses sobre VC, fintech, oportunitats professionals o simplement intercanviar idees sobre el sector.</p>
+      <div class="contacte-grid">
+        <div>
+          <div class="contacte-links">
+            <a href="mailto:amartinadelantado@gmail.com" class="contacte-link">
+              <div class="contacte-link-icon">✉</div>
+              <div>
+                <div class="contacte-link-text">amartinadelantado@gmail.com</div>
+                <div class="contacte-link-sub">Respon en menys de 24h</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/a-martin-ad" target="_blank" class="contacte-link">
+              <div class="contacte-link-icon" style="background:#0077B5;">in</div>
+              <div>
+                <div class="contacte-link-text">linkedin.com/in/a-martin-ad</div>
+                <div class="contacte-link-sub">+500 connexions</div>
+              </div>
+            </a>
+            <a href="tel:+34682443662" class="contacte-link">
+              <div class="contacte-link-icon">📱</div>
+              <div>
+                <div class="contacte-link-text">+34 682 443 662</div>
+                <div class="contacte-link-sub">Barcelona, Spain</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contacte-form">
+          <div class="form-group">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-input" placeholder="El teu nom">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="email@exemple.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Missatge</label>
+            <textarea class="form-textarea" placeholder="En qué et puc ajudar?"></textarea>
+          </div>
+          <button class="btn-primary" style="align-self:flex-start;">Enviar missatge →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Àlex Martín Adelantado</div>
+    <div class="footer-copy">© 2026 · Venture Capital & Finance · Barcelona</div>
+  </footer>
+
+</body>
+</html>
